@@ -1,7 +1,42 @@
-<mvc:View controllerName="list.controller.App"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View 
+    controllerName="list.controller.App"
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content >
+                        <HBox >
+                            <Label id="labelEmployee"
+                                    labelFor="inputEmployee"
+                                    text="{i18n>labelEmployee}" 
+                                    class="sapUiSmallMarginEnd" />
+                            <Input id="inputEmployee"
+                                    maxLength="6"
+                                    width="12.5rem"
+                                    class="sapUiSmallMarginEnd" 
+                                    liveChange="onValidate"/>
+
+                            <Label id="labelCountry"
+                                    labelFor="slCountry"
+                                    text="{i18n>labelCountry}" 
+                                    class="sapUiSmallMarginEnd" 
+                                    visible="false" />
+                            <Select id="slCountry" forceSelection="false" visible="false" >
+                                <items>
+                                    <core:Item key="US" text="{i18n>countryUS}"></core:Item>
+                                    <core:Item key="UK" text="{i18n>countryUK}"></core:Item>
+                                    <core:Item key="ES" text="{i18n>countryES}"></core:Item>
+                                </items>
+                            </Select>
+                        </HBox>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
 </mvc:View>
