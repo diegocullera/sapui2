@@ -5,6 +5,8 @@ sap.ui.define([
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
+     * @param {typeof sap.ui.model.Filter} Filter
+     * @param {typeof sap.ui.model.FilterOperator} FilterOperator
      */
     function (Controller, Filter, FilterOperator) {
         "use strict";
@@ -66,6 +68,15 @@ sap.ui.define([
             oModel.setProperty("/CountryKey", "");
         }
 
+        function showPostalCode(oEvent) {
+
+            var itemPressed = oEvent.getSource();
+            var oContext = itemPressed.getBindingContext();
+            var objectContext = oContext.getObject();
+             sap.m.MessageToast.show(objectContext.PostalCode);
+
+        }
+
         function myCheck() {
             var inputEmployee = this.byId("inputEmployee");
             var valueEmploye = inputEmployee.getValue();
@@ -85,6 +96,7 @@ sap.ui.define([
             onInit: onInit,
             onValidate: myCheck,
             onFilter: onFilter,
-            onClearFilter: onClearFilter
+            onClearFilter: onClearFilter,
+            showPostalCode: showPostalCode
         });
     });
