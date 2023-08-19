@@ -7,6 +7,17 @@ sap.ui.define([
 
 
      function onInit() {
+        this._oEventBus = sap.ui.getCore().getEventBus();
+    }
+
+    function onSaveIncidence (oEvent) {
+
+        var incidence = oEvent.getSource().getParent().getParent();
+        var incidenceRow = incidence.getBindingContext("incidenceModel");
+        var object = incidenceRow.getObject();
+        var temp = incidenceRow.sPath.replace('/','');
+        console.log(temp);
+        this._oEventBus.publish("incidence", "onSaveIncidence", object );
 
     }
 
@@ -25,23 +36,31 @@ sap.ui.define([
 
     function onDeleteIncidence (oEvent) {
 
-        var tableIncidence = this.getView().byId("tableIncidence");
-        var rowIncidence = oEvent.getSource().getParent().getParent();
-        var incidenceModel = this.getView().getModel("incidenceModel");
-        var odata = incidenceModel.getData();
-        var conextObject = rowIncidence.getBindingContext("incidenceModel");
+        var contextObj = oEvent.getSource().getBindingContext("incidenceModel").getObject();
+        this._oEventBus.publish("incidence", "onDeleteIncidence", {
+            IncidenceId: contextObj.IncidenceId,
+            SapId: contextObj.SapId,
+            EmployeeId: contextObj.EmployeeId
+        });
+        
+    }
 
-        odata.splice(conextObject.index - 1, 1);
-        for ( var i in odata ){
-            odata[i].index = parseInt(i) + 1;
-        };
+    function updateIncidenceCreationDate(oEvent) {
+        var context = oEvent.getSource().getBindingContext("incidenceModel");
+        var contextObj = context.getObject();
+        contextObj.CreationDateX = true;
+    }
 
-        incidenceModel.refresh();
-        tableIncidence.removeContent(rowIncidence);
+    function updateIncidenceReason(oEvent) {
+        var context = oEvent.getSource().getBindingContext("incidenceModel");
+        var contextObj = context.getObject();
+        contextObj.ReasonX = true;
+    }
 
-        for ( var j in tableIncidence.getContent()){
-            tableIncidence.getContent()[j].bindElement("incidenceModel>/" + j);
-        };
+    function updateIncidenceType(oEvent) {
+        var context = oEvent.getSource().getBindingContext("incidenceModel");
+        var contextObj = context.getObject();
+        contextObj.TypeX = true;
     }
 
 
@@ -50,7 +69,11 @@ sap.ui.define([
         onInit: onInit,
         onCreateIncidence: onCreateIncidence,
         Formatter: formatter,
-        onDeleteIncidence:onDeleteIncidence
+        onDeleteIncidence:onDeleteIncidence,
+        onSaveIncidence: onSaveIncidence,
+        updateIncidenceCreationDate: updateIncidenceCreationDate,
+        updateIncidenceReason: updateIncidenceReason,
+        updateIncidenceType: updateIncidenceType
 
     });
 

@@ -45,7 +45,7 @@ sap.ui.define([
         function showPostalCode(oEvent) {
 
             var itemPressed = oEvent.getSource();
-            var oContext = itemPressed.getBindingContext("jsonEmployees");
+            var oContext = itemPressed.getBindingContext("odataNorthwind");
             var objectContext = oContext.getObject();
             sap.m.MessageToast.show(objectContext.PostalCode);
 
@@ -86,7 +86,7 @@ sap.ui.define([
             var iconPressed = oEvent.getSource();
 
             //Context from de Model
-            var oContext = iconPressed.getBindingContext("jsonEmployees");
+            var oContext = iconPressed.getBindingContext("odataNorthwind");
 
             if (!this._oDialogOrders) {
                 this._oDialogOrders = new sap.ui.xmlfragment("list.fragment.DialogOrders", this);
@@ -94,7 +94,7 @@ sap.ui.define([
             }
 
             // Dialog Binding to Context to have access to the data of selected item
-            this._oDialogOrders.bindElement("jsonEmployees>" + oContext.getPath());
+            this._oDialogOrders.bindElement("odataNorthwind>" + oContext.getPath());
             this._oDialogOrders.open();
 
 
@@ -103,7 +103,7 @@ sap.ui.define([
             // ordersTable.destroyItems();
 
             // var itemPressed = oEvent.getSource();
-            // var oContext = itemPressed.getBindingContext("jsonEmployees");
+            // var oContext = itemPressed.getBindingContext("odataNorthwind");
             // var objectContext = oContext.getObject();
             // var orders = objectContext.Orders;
 
@@ -159,24 +159,24 @@ sap.ui.define([
             // var columnListItem = new sap.m.ColumnListItem();
 
             // var cellOrderID = new sap.m.Label();
-            // cellOrderID.bindProperty("text", "jsonEmployees>OrderID");
+            // cellOrderID.bindProperty("text", "odataNorthwind>OrderID");
             // columnListItem.addCell(cellOrderID);
 
             // var cellFreight = new sap.m.Label();
-            // cellFreight.bindProperty("text", "jsonEmployees>Freight");
+            // cellFreight.bindProperty("text", "odataNorthwind>Freight");
             // columnListItem.addCell(cellFreight);
 
             // var cellShipAddress = new sap.m.Label();
-            // cellShipAddress.bindProperty("text", "jsonEmployees>ShipAddress");
+            // cellShipAddress.bindProperty("text", "odataNorthwind>ShipAddress");
             // columnListItem.addCell(cellShipAddress);
 
             // var oBindingInfo = {
-            //     model: "jsonEmployees",
+            //     model: "odataNorthwind",
             //     path: "Orders",
             //     template: columnListItem
             // }
             // newTableJSON.bindAggregation("items", oBindingInfo);
-            // newTableJSON.bindElement("jsonEmployees>" + oContext.getPath());
+            // newTableJSON.bindElement("odataNorthwind>" + oContext.getPath());
 
             // ordersTable.addItem(newTableJSON);
 
@@ -189,7 +189,7 @@ sap.ui.define([
 
         function showEmployee(oEvent) {
 
-            var path = oEvent.getSource().getBindingContext("jsonEmployees").getPath();
+            var path = oEvent.getSource().getBindingContext("odataNorthwind").getPath();
             this._bus.publish("flexible", "showEmployee", path);
 
         }
