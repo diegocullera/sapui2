@@ -9,19 +9,19 @@
                                 }" ></core:Icon>
                 <Title text="{i18n>incidence} {= ${incidenceModel>IncidenceId} ? parseInt(${incidenceModel>IncidenceId}) : '' } {path:'incidenceModel>CreationDate', formatter:'.Formatter.dateFormat'}" ></Title>
                 <ToolbarSpacer ></ToolbarSpacer>
-                <core:Icon src="sap-icon://save" press="onSaveIncidence"></core:Icon>
+                <Button icon="sap-icon://save" press="onSaveIncidence" enabled="{= ${incidenceModel>EnabledSave} === true}"></Button>
                 <core:Icon src="sap-icon://delete" press="onDeleteIncidence"></core:Icon>
             </Toolbar>
         </headerToolbar>
         <content>
             <HBox >
                 <VBox class="sapUiSmallMarginEnd" >
-                    <Text text="{i18n>incidenceDate}" ></Text>
-                    <DatePicker dateValue="{incidenceModel>CreationDate}" change="updateIncidenceCreationDate"></DatePicker>
+                    <Label text="{i18n>incidenceDate}" required="true"></Label>
+                    <DatePicker dateValue="{incidenceModel>CreationDate}" change="updateIncidenceCreationDate" valueState="{incidenceModel>CreatioDateState}"></DatePicker>
                 </VBox>
                 <VBox visible="{= ${incidenceModel>CreationDate} !== '' &amp;&amp; ${incidenceModel>CreationDate} !== undefined }" class="sapUiSmallMarginEnd" >
-                    <Text text="{i18n>incidenceReason}" ></Text>
-                    <Input value="{incidenceModel>Reason}" change="updateIncidenceReason"></Input>
+                    <Label text="{i18n>incidenceReason}" required="true"></Label>
+                    <Input value="{incidenceModel>Reason}" change="updateIncidenceReason" valueState="{incidenceModel>ReasonState}"></Input>
                 </VBox>
                 <VBox visible="{= ${incidenceModel>CreationDate} !== '' &amp;&amp; ${incidenceModel>CreationDate} !== undefined }" class="sapUiSmallMarginEnd" >
                     <Text text="{i18n>incidenceType}" ></Text>
