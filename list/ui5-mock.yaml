@@ -21,6 +21,10 @@ server:
             url: http://erp13.sap4practice.com:9037
             client: "001"
             destination: logaligroupERP
+          - path: /sap/opu/odata/sap/YSAPUI5_SRV_01
+            url: http://erp13.sap4practice.com:9037
+            client: "001"
+            destination: logaligroupERP
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -42,7 +46,7 @@ server:
             generateMockData: true
             metadataXmlPath: ./webapp/localService/metadata.xml
             mockdataRootPath: ./webapp/localService/data
-          - urlPath: /sap/opu/odata/sap/YSAPUI5_SRV_01/
+          - urlPath: /sap/opu/odata/sap/YSAPUI5_SRV_01
             metadataXmlPath: ./webapp/localService/YSAPUI5_SRV_011/metadata.xml
             mockdataRootPath: ./webapp/localService/YSAPUI5_SRV_011/mockdata
             generateMockData: true

@@ -14,7 +14,7 @@ sap.ui.define([
         function onInit() {
 
             this._bus = new sap.ui.getCore().getEventBus();
-            
+
         }
 
         function onFilter() {
@@ -194,6 +194,15 @@ sap.ui.define([
 
         }
 
+        function toOrderDetails(oEvent) {
+
+            var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
+            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.navTo("RouteOrderDetails", {
+                OrderID: orderID
+            });
+        }
+
         return Controller.extend("list.controller.MasterEmployee", {
             onInit: onInit,
             onValidate: myCheck,
@@ -204,6 +213,7 @@ sap.ui.define([
             onHideCity: onHideCity,
             showOrders: showOrders,
             onCloseOrders: onCloseOrders,
-            showEmployee: showEmployee
+            showEmployee: showEmployee,
+            toOrderDetails: toOrderDetails
         });
     });

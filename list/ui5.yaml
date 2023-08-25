@@ -23,6 +23,10 @@ server:
             url: http://erp13.sap4practice.com:9037
             client: '001'
             destination: logaligroupERP
+          - path: /sap/opu/odata/sap/YSAPUI5_SRV_01
+            url: http://erp13.sap4practice.com:9037
+            client: '001'
+            destination: logaligroupERP
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
