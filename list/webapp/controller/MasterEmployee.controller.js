@@ -1,5 +1,5 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    "list/controller/Base.controller",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
 ],
@@ -8,7 +8,7 @@ sap.ui.define([
      * @param {typeof sap.ui.model.Filter} Filter
      * @param {typeof sap.ui.model.FilterOperator} FilterOperator
      */
-    function (Controller, Filter, FilterOperator) {
+    function (Base, Filter, FilterOperator) {
         "use strict";
 
         function onInit() {
@@ -194,16 +194,16 @@ sap.ui.define([
 
         }
 
-        function toOrderDetails(oEvent) {
+        // function toOrderDetails(oEvent) {
 
-            var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("RouteOrderDetails", {
-                OrderID: orderID
-            });
-        }
+        //     var orderID = oEvent.getSource().getBindingContext("odataNorthwind").getObject().OrderID;
+        //     var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+        //     oRouter.navTo("RouteOrderDetails", {
+        //         OrderID: orderID
+        //     });
+        // }
 
-        return Controller.extend("list.controller.MasterEmployee", {
+        return Base.extend("list.controller.MasterEmployee", {
             onInit: onInit,
             onValidate: myCheck,
             onFilter: onFilter,
@@ -213,7 +213,7 @@ sap.ui.define([
             onHideCity: onHideCity,
             showOrders: showOrders,
             onCloseOrders: onCloseOrders,
-            showEmployee: showEmployee,
-            toOrderDetails: toOrderDetails
+            showEmployee: showEmployee
+            // toOrderDetails: toOrderDetails
         });
     });
